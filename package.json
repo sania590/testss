@@ -1,0 +1,20 @@
+{
+  "name": "food-blog",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start" : "json-server --watch ./database/db.json"
+  },
+  "devDependencies": {
+    "sass": "^1.67.0",
+    "vite": "^4.4.9",
+    "vite-plugin-style-import": "^2.0.0"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}

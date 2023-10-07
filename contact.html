@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culinary Delights</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <!--Cormorant Garamond font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- font-awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="container ">
+            <nav class="d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <h4 class="mb-0"><a href="index.html">Culinary Delights</a> </h4>
+                </div>
+
+                <div class="menu-icon d-flex flex-column" id="menuIcon">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="section-padding">
+            <div class="container">
+                <div class="contact-wrapper d-flex">
+                    <form action="" id="contact_form">
+                        <h2 class="section-heading">Contact Us</h2>
+                        <div class="form-field">
+                            <label for="">Full Name</label>
+                            <input type="text" id="name" class="form-control">
+                            <p class="error"></p>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control">
+                            <p class="error"></p>
+                        </div>
+                        <div class="form-field">
+                            <label for="">What can we help you with?</label>
+                            <textarea name="" class="form-control" id="" rows="3"></textarea>
+                            <p class="error"></p>
+                        </div>
+                        <div class="alert alert-success alert-dismissible fade show" id="contact-success-alert"
+                            role="alert" style="display: none;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p> Thank you for reaching out to us! Your message has been successfully sent. We will
+                                    get back to you as soon as possible. </p>
+                                <button type="button" class="btn-close"></button>
+                            </div>
+
+                        </div>
+                        <button class="primary-btn" type="submit" id="submit_msg_btn">Send Message</button>
+                    </form>
+                    <div class="image">
+                        <img src="images/hero-img.jpg" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Newsletter Section -->
+    <section class="section-bg-color section-padding newsletter-section text-center">
+        <div class="container">
+            <div class="section-summary mb-4">
+                <h2 class="section-heading">Subscribe to my newsletter</h2>
+                <p class="section-desc text-center">Subscribe to our newsletter and receive exclusive news, offers, and
+                    exciting
+                    content delivered right to your inbox.</p>
+            </div>
+
+            <form action="">
+                <div class="alert alert-success alert-dismissible fade show" id="sub-success-alert" role="alert"
+                    style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p> Thank you for subscribing to our newsletter!. We're thrilled to have you join our
+                            food-loving community.</p>
+                        <button type="button" class="btn-close"></button>
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column flex-md-row align-items-md-start">
+                    <div class="flex flex-column input-container">
+                        <input type="email" id="email-input" class="form-control mb-2  mb-md-0"
+                            placeholder="Enter your email here" required>
+                        <p class="error" id="sub-error"></p>
+                    </div>
+                    <button type="submit" id="subscribe-btn" class=" primary-btn">Subscribe Now</button>
+                </div>
+
+            </form>
+
+
+        </div>
+
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <p>© Culinary Delights 2023</p>
+    </footer>
+    <script type="module" src="/main.js"></script>
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submit_msg_btn').click(function (e) {
+                e.preventDefault();
+                $('#contact-success-alert').hide();
+                const fields = $(' #contact_form input[type="text"], #contact_form input[type="email"] ,  #contact_form textarea');
+                fields.each(function () {
+                    validateFields($(this));
+                })
+
+                if ($('#contact_form .error:visible').length > 0) {
+                    event.preventDefault(); // Prevent form submission
+
+                } else {
+                    $('#contact-success-alert').show();
+                    setTimeout(function () {
+                        $('#contact-success-alert').hide();
+                    }, 5000)
+                }
+
+            })
+            // Validate fields on input change
+            $(' #contact_form input[type="text"], #contact_form input[type="email"], #contact_form textarea').on('input', function () {
+                validateFields($(this));
+            });
+
+            // Validate email and name
+            $('#email').on('blur', validateEmail);// blur event indicates that element lost focus
+            $('#name').on('input', validateName);
+
+            // Function to validate a field
+            function validateFields(input) {
+                const input_value = input.val().trim();
+                var errorElement = input.next('.error');
+                if (input_value === '') {
+                    errorElement.text('Please fill this field');
+                    errorElement.show();
+                } else {
+                    errorElement.hide();
+                }
+            }
+            // function to validate email
+            function validateEmail() {
+                const email_value = $('#email').val();
+                const errorElement = $('#email').next();
+                if (email_value != '') {
+                    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    const errorMessage = 'Please enter a valid email address.';
+                    if (emailPattern.test(email_value)) {
+                        errorElement.hide();
+                    } else {
+
+                        errorElement.text(errorMessage);
+                        errorElement.show();
+                    }
+                }
+
+            }
+            // function to validate name
+            function validateName() {
+                const name_value = $('#name').val();
+                const errorElement = $('#name').next();
+                const namePattern = /^[A-Za-z\s]+$/;
+                const errorMessage = 'Please enter a valid name.';
+                if (namePattern.test(name_value)) {
+                    errorElement.hide();
+
+                } else {
+
+                    errorElement.text(errorMessage);
+                    errorElement.show();
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

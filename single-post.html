@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culinary Delights</title>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <!--Cormorant Garamond font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- font-awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="container ">
+            <nav class="d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <h4 class="mb-0"><a href="index.html">Culinary Delights</a> </h4>
+
+                </div>
+
+                <div class="menu-icon d-flex flex-column" id="menuIcon">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="section-padding single-post-details">
+            <div class="container">
+                <div class=" post-header text-center">
+                    <h1 class="post-title" data-aos="fade-up">Farm-to-Table Delights: Exploring Local Produce</h1>
+                    <div class="post-metadata d-flex justify-content-center align-items-center" data-aos="fade-up">
+                        <div class="profile-container">
+                            <img src="images/profile-placeholder.jpeg" alt="Profile Placeholder">
+                        </div>
+                        <p><span id="author">Sania Ghous</span> <span class="separator">-</span><span>
+                                <span id="month">March</span> <span id="date"
+                                class="number">
+                                12</span>  <span id="year" class="number"> 2023</span></span>
+                        </p>
+                    </div>
+                    <div class="post-tags mb-4 mt-2 d-flex justify-content-center" data-aos="fade-up">
+                    </div>
+                </div>
+                <div class="feature-img mb-4" data-aos="fade-up">
+                    <img id="feature-img" src="" alt="">
+
+                </div>
+                <div class="post-detail">
+                    <p data-aos="fade-up" id="post_content">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Architecto, rem nam
+                        unde, ut porro
+                        maiores cupiditate reprehenderit nesciunt earum facilis dignissimos eaque molestias esse harum
+                        officia autem debitis perspiciatis itaque.</p>
+
+                </div>
+            </div>
+
+
+        </section>
+    </main>
+    <!-- Newsletter Section -->
+    <section class="section-bg-color section-padding newsletter-section text-center">
+        <div class="container">
+            <div class="section-summary mb-4">
+                <h2 class="section-heading">Subscribe to my newsletter</h2>
+                <p class="section-desc text-center">Subscribe to our newsletter and receive exclusive news, offers, and
+                    exciting
+                    content delivered right to your inbox.</p>
+            </div>
+
+            <form action="">
+                <div class="alert alert-success alert-dismissible fade show" id="sub-success-alert" role="alert"
+                    style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p> Thank you for subscribing to our newsletter!. We're thrilled to have you join our
+                            food-loving community.</p>
+                        <button type="button" class="btn-close"></button>
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column flex-md-row align-items-md-start">
+                    <div class="flex flex-column input-container">
+                        <input type="email" id="email-input" class="form-control mb-2  mb-md-0"
+                            placeholder="Enter your email here" required>
+                        <p class="error" id="sub-error"></p>
+                    </div>
+                    <button type="submit" id="subscribe-btn" class=" primary-btn">Subscribe Now</button>
+                </div>
+
+            </form>
+
+
+        </div>
+
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <p>© Culinary Delights 2023</p>
+    </footer>
+    <script type="module" src="/main.js"></script>
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            var postId = urlParams.get('id');
+            var url = "https://sania590.github.io/Culinary-Delights-json/db.json?id=" + postId;
+            // fetch function
+            fetch(url)
+                .then(res => res.json())
+                .then(json => {
+                    json.map(data => {
+                        // title
+                        $('.post-title').text(data.title);
+                        // author
+                        $('#author').text(data.author);
+                        // date
+                        var date = data.date;
+                        date = date.split(' ');
+
+                        $('#month').text(date[0]);
+                        $('#date').text(date[1]);
+                        $('#year').text(date[2]);
+                        // image
+                        $('#feature-img').attr('src', './images/' + data.feature_image);
+                        // decription
+                        $('#post_content').text(data.content);
+                        $('#post_content').html(function (_, html) {
+                            return html.replace(/\n/g, '<br>');
+                        });
+                        $('#post_content').html(function (_, html) {
+                            return html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                        });
+                  
+                        // tags
+                        const tagArray = data.tags;
+                        for (const tag of tagArray) {
+                            $('.post-tags').append(`  <p class="tag">${tag}</p>`);
+                        }
+
+                    })
+
+
+                })
+
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Culinary Delights</title>
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <!--Cormorant Garamond font  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- font-awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="/main.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <div class="container ">
+      <nav class="d-flex justify-content-between align-items-center">
+        <div class="logo">
+          <h4 class="mb-0"><a href="index.html">Culinary Delights</a> </h4>
+
+        </div>
+
+        <div class="menu-icon d-flex flex-column" id="menuIcon">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="#!" class="active">Home</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- hero section -->
+  <section class="hero-section">
+    <div class="content container d-flex align-items-center">
+      <div class="text" id="heroText" data-aos="fade-right">
+        <h1 class="title">Explore Culinary Delights</h1>
+        <p class="description">Indulge your taste buds with a world of flavors. From mouthwatering recipes to culinary
+          adventures, we're your guide to all things delicious.</p>
+        <button class=" mt-3 hollow-btn" id="explore_btn" >Explore Blog</button>
+      </div>
+      <div class="feature-img" data-aos="fade-left">
+        <img src="images/hero-img.jpg" alt="">
+      </div>
+
+    </div>
+  </section>
+  <!-- blog posts -->
+  <section class="section-padding " id="blog">
+    <div class="container">
+      <div class="section-summary mb-4">
+        <h2 class="section-heading"> Explore Our Blog</h2>
+        <p class="section-desc text-center">Explore our blog for a delectable journey through culinary adventures,
+          recipes, and food stories that will tickle your taste buds.</p>
+      </div>
+
+      <div class="post-wrapper row g-3" id="postWrapper">
+        <!-- posts are loaded here from json-server -->
+
+      </div>
+      <div class="d-flex justify-content-between">
+        <button class="primary-btn mx-auto mt-3" id="show_more_btn">Show more</button>
+
+      </div>
+    </div>
+
+  </section>
+  <!-- Newsletter Section -->
+  <section class="section-bg-color section-padding newsletter-section text-center">
+    <div class="container">
+      <div class="section-summary mb-4">
+        <h2 class="section-heading">Subscribe to my newsletter</h2>
+        <p class="section-desc text-center">Subscribe to our newsletter and receive exclusive news, offers, and exciting
+          content delivered right to your inbox.</p>
+      </div>
+
+      <form action="">
+        <div class="alert alert-success alert-dismissible fade show" id="sub-success-alert" role="alert"
+          style="display: none;">
+          <div class="d-flex justify-content-between align-items-center">
+            <p> Thank you for subscribing to our newsletter!. We're thrilled to have you join our
+              food-loving community.</p>
+            <button type="button" class="btn-close"></button>
+          </div>
+
+        </div>
+        <div class="d-flex flex-column flex-md-row align-items-md-start">
+          <div class="flex flex-column input-container">
+            <input type="email" id="email-input" class="form-control mb-2  mb-md-0" placeholder="Enter your email here"
+              required>
+            <p class="error" id="sub-error"></p>
+          </div>
+          <button type="submit" id="subscribe-btn" class=" primary-btn">Subscribe Now</button>
+        </div>
+
+      </form>
+
+
+    </div>
+
+  </section>
+
+  <!-- footer -->
+  <footer>
+    <p>© Culinary Delights 2023</p>
+  </footer>
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+  <script>
+    $(document).ready(function () {
+      // explore-blog scroll to blog section
+      $('#explore_btn').click(function(){
+        var targetOffset = $('#blog').offset().top;
+
+        // Scroll smoothly to the target offset
+        $('html, body').animate({
+            scrollTop: targetOffset
+        }, 100); 
+      })
+      var offset = 0;
+      var limit = 6;
+      fetch_posts('https://sania590.github.io/Culinary-Delights-json/db.json', offset, limit);
+      $('#show_more_btn').click(function () {
+        limit = 3;
+        if (offset == 0) {
+          offset += 6;
+        }
+        else {
+          offset += 3;
+        }
+        fetch_posts('https://sania590.github.io/Culinary-Delights-json/db.json', offset, limit);
+
+       
+      })
+    })
+  </script>
+
+</body>
+
+</html>

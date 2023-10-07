@@ -1,0 +1,108 @@
+@use "variables" as var;
+/* Global styling
+------------------------------------------------ */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+// typography
+html{
+    font-size: 18px;
+}
+body{
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    font-weight: 500;
+}
+h1,h2,h3,h4,h5,h6{
+    color: var.$primary-color;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+h1{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+h2{
+    font-size: 1.6rem;
+}
+h3{
+    font-size: 1.4rem;
+}
+h4{
+    font-size: 1.2rem;
+}
+h5{
+    font-size: 1.2rem;
+}
+h6{
+    font-size: 1rem;
+}
+
+p{
+    color: var.$text-color;
+    font-size: 1rem;
+    letter-spacing: .1px;
+    margin-bottom: 0;
+    line-height: 1.2rem;
+}
+a{
+    text-decoration: none;
+    font-size: 1rem;
+}
+input[type=text]{
+    outline: none;
+    &:focus{
+        outline: none !important;   
+    }
+}
+// utility classes
+.container{
+    padding: 0 20px;
+}
+// section related
+.section-padding{
+    padding: 60px 0;
+}
+.section-heading{
+    font-size: 1.4rem;
+    text-align: center;
+}
+.section-desc{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-bg-color{
+    background-color: var.$secondary-color;
+}
+
+.number{
+    font-family: serif;
+}
+// alerts
+.alert{
+    padding: 10px 15px;
+
+    p{
+        text-align: left;
+        flex: 1;
+    }
+    .btn-close{
+        font-size: .9rem;
+        display: block;
+        position: relative;
+        padding: 0;
+        margin-left: 5px;
+    }
+}
+// error message
+.error{
+    text-align: left;
+    font-size: .9rem;
+    color: rgb(211, 5, 5);
+    margin-inline: 0;
+    width: 100%;
+
+}
