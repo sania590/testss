@@ -1,7 +1,7 @@
 
 // totoL number of posts
 var totalPosts = 0;
-fetch('https://sania590.github.io/Culinary-Delights-json/db.json')
+fetch('https://culinary-delights-json.vercel.app/db.json')
     .then(res => res.json())
     .then(json => {
         totalPosts = json.length;
@@ -13,7 +13,7 @@ function fetch_posts(url, offset, limit) {
     //   laod all posts
     var postwrapper = document.getElementById('postWrapper');
     // fetch function
-    var url = `https://sania590.github.io/Culinary-Delights-json/db.json?_start=${offset}&_limit=${limit}`
+    var url = `https://culinary-delights-json.vercel.app/db.json?_start=${offset}&_limit=${limit}`
     fetch(url)
         .then(res => res.json())
         .then(json => {
