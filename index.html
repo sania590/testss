@@ -143,7 +143,7 @@
       })
       var offset = 0;
       var limit = 6;
-      fetch_posts('https://sania590.github.io/Culinary-Delights-json/db.json', offset, limit);
+      fetch_posts('https://culinary-delights-json.vercel.app/db.json', offset, limit);
       $('#show_more_btn').click(function () {
         limit = 3;
         if (offset == 0) {
@@ -152,7 +152,7 @@
         else {
           offset += 3;
         }
-        fetch_posts('https://sania590.github.io/Culinary-Delights-json/db.json', offset, limit);
+        fetch_posts('https://culinary-delights-json.vercel.app/db.json', offset, limit);
 
        
       })

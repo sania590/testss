@@ -136,7 +136,7 @@
         $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             var postId = urlParams.get('id');
-            var url = "https://sania590.github.io/Culinary-Delights-json/db.json?id=" + postId;
+            var url = "https://culinary-delights-json.vercel.app/db.json?id=" + postId;
             // fetch function
             fetch(url)
                 .then(res => res.json())
