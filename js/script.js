@@ -1,11 +1,13 @@
 
 // totoL number of posts
 var totalPosts = 0;
-fetch('https://culinary-delights-json.vercel.app/db.json')
+fetch('https://sania590.github.io/Culinary-Delights-json/db.json')
     .then(res => res.json())
     .then(json => {
         totalPosts = json.length;
+        console.log(totalPosts);
     })
+
 
 
 function fetch_posts(url, offset, limit) {
@@ -13,19 +15,35 @@ function fetch_posts(url, offset, limit) {
     //   laod all posts
     var postwrapper = document.getElementById('postWrapper');
     // fetch function
-    var url = `https://culinary-delights-json.vercel.app/db.json?_start=${offset}&_limit=${limit}`
-    fetch(url)
-        .then(res => res.json())
-        .then(json => {
-            if (offset + json.length >= totalPosts) {
-                $('#show_more_btn').hide();
-            }
-            json.map(data => {
+    var url = `https://culinary-delights-json.vercel.app/db.json`
+        fetch(url)
+       
+        .then(response => response.json())
+        .then(data => {
+          // Check if 'data' is an object with properties
+          if (typeof data === 'object' && data !== null) {
+            // Access and process the properties
+            const keys = Object.keys(data);
+            const result = keys.map(key => {
+              // Your mapping logic here for each property
+              console.log(data[key][0].title);
 
-                postwrapper.append(load_post(data));
-            })
+              for (var i=offset; i<limit; i++){
+                postwrapper.append(load_post(data[key][i]));
 
+              }
+   
+            });
+           
+           
+          } else {
+            console.error('Data is not an object:', data);
+          }
         })
+        .catch(error => {
+          console.error('Error fetching JSON:', error);
+        });
+        // 
 }
 function load_post({ id, title, author, feature_image, date, views, comments, likes, content }) {
     let div = document.createElement('div');

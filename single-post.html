@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -56,9 +56,8 @@
                             <img src="images/profile-placeholder.jpeg" alt="Profile Placeholder">
                         </div>
                         <p><span id="author">Sania Ghous</span> <span class="separator">-</span><span>
-                                <span id="month">March</span> <span id="date"
-                                class="number">
-                                12</span>  <span id="year" class="number"> 2023</span></span>
+                                <span id="month">March</span> <span id="date" class="number">
+                                    12</span> <span id="year" class="number"> 2023</span></span>
                         </p>
                     </div>
                     <div class="post-tags mb-4 mt-2 d-flex justify-content-center" data-aos="fade-up">
@@ -136,13 +135,22 @@
         $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             var postId = urlParams.get('id');
-            var url = "https://culinary-delights-json.vercel.app/db.json?id=" + postId;
+             postId = postId-1;
+            var url = "https://culinary-delights-json.vercel.app/db.json";
             // fetch function
             fetch(url)
                 .then(res => res.json())
-                .then(json => {
-                    json.map(data => {
-                        // title
+                // 
+                .then(jsondata => {
+                    // Check if 'data' is an object with properties
+                    if (typeof jsondata === 'object' && jsondata !== null) {
+                        // Access and process the properties
+                        const keys = Object.keys(jsondata);
+                        const result = keys.map(key => {
+                            // Your mapping logic here for each property
+                            // console.log(jsondata[key][postId]);
+                            var data = jsondata[key][postId];
+                              // title
                         $('.post-title').text(data.title);
                         // author
                         $('#author').text(data.author);
@@ -169,13 +177,19 @@
                         for (const tag of tagArray) {
                             $('.post-tags').append(`  <p class="tag">${tag}</p>`);
                         }
+                        });
 
-                    })
 
-
+                    } else {
+                        console.error('Data is not an object:', data);
+                    }
                 })
-
-        })
+                .catch(error => {
+                    console.error('Error fetching JSON:', error);
+                });
+                // 
+            });
+               
     </script>
 
 </body>
